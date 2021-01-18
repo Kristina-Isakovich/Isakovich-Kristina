@@ -1,0 +1,14 @@
+{
+  "name": "Isakovich-Kristina",
+  "version": "1.0.0",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^4.1.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.13",
+    "gulp-concat": "^2.6.1"
+  }
+}
