@@ -39,7 +39,7 @@ function transformSCSS() {
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCSS())
         .pipe(concat('index.css'))
-        .pipe(dest('build'));
+        .pipe(dest('build/'));
 }
 
 function watchTasks() {
