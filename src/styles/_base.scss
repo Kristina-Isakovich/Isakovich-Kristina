@@ -29,6 +29,13 @@ button{
   font: inherit;
   background-color: transparent;
   cursor: pointer;
+  outline: none;
+}
+
+button:hover{
+  background-color: var(--bcg-dark);
+  transition: .6s;
+  transform: scale(1.1);
 }
 
 button:active{

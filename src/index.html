@@ -12,33 +12,90 @@
 <nav class="tabs-nav">
     <h1 class="tabs-nav-title">Меню задач</h1>
     <div class="tabs-nav__item is-active" data-tab-name="tab-1">
-        <img class="tabs-nav__item-icon" src="./img/current-tasks-icon.svg" height="30" width="" alt="tasks">
+        <img class="tabs-nav__item-icon" src="./img/current-tasks-icon.svg" height="20" alt="tasks">
         <span class="tabs-nav__item-title">Текущие задачи</span>
     </div>
+
     <div class="tabs-nav__item" data-tab-name="tab-2">
-        <img class="tabs-nav__item-icon" src="./img/check-box-icon.svg" height="30" width="" alt="check-box">
+        <img class="tabs-nav__item-icon" src="./img/check-box-icon.svg" height="20" alt="check-box">
         <span class="tabs-nav__item-title">Выполненные задачи</span>
     </div>
+
     <div class="tabs-nav__item" data-tab-name="tab-3">
-        <img class="tabs-nav__item-icon" src="./img/trash-can-icon.svg" height="30" width="" alt="trash-can">
+        <img class="tabs-nav__item-icon" src="./img/trash-can-icon.svg" height="20" alt="trash-can">
         <span class="tabs-nav__item-title">Удаленные задачи</span>
     </div>
 </nav>
 
-<section>
-    <header class="">
+<section class="task-list">
+    <header class="task-list-bar">
+        <div class="task-list-bar__wrap">
+          <h1 class="task-list-bar-title">Привет!</h1>
+          <p class="task-list-bar-text">Хорошего трудового Дня!</p>
+        </div>
 
+        <img class="task-list-bar__img" src="./img/men.jpg" height="150" alt="men">
     </header>
 
-
     <div class="tabs__content">
-        <div class="tab is-active tab-1">1</div>
+        <div class="tab is-active tab-1">
+          <template id="template-current-tasks"></template>
+
+          <ul class="current-tasks">
+            <li class="current-task">
+              <h2 class="current-task-name">Dthhhph</h2>
+              <p class="current-task-description">lorrmghtth hth trdrh trhsn  rh rh</p>
+              <p class="current-task-priority">Need</p>
+              <button class="task-btn btn__edit">Редактировать</button>
+              <button class="task-btn btn__do">Выполнить</button>
+              <button class="task-btn btn__delete">Удалить</button>
+            </li>
+          </ul>
+
+           <form class="add-task__form">
+               <h1 class="form-title">Добавим новую задачу!</h1>
+               <label class="form__text" for="form-name">Название <span style="color: red">*</span></label>
+               <input type="text" id="form-name" required>
+
+               <label class="form__text" for="form-description">Описание</label>
+               <textarea  id="form-description"></textarea>
+
+               <div class="form-priority-case">
+                   <p class="form__text">Приоритет:</p>
+
+                   <div class="form-priority__radio">
+                     <input type="radio" id="form-indefinite" name="form-priority" checked>
+                     <label for="form-indefinite">Бессрочное</label>
+                     <input type="radio" id="form-urgent" name="form-priority">
+                     <label for="form-urgent">Срочное</label>
+                     <input type="radio" id="form-trial" name="form-priority">
+                     <label for="form-trial">Триальное</label>
+                   </div>
+               </div>
+
+               <div class="form-buttons">
+                 <button class="form-btn" type="submit">Добавить</button>
+                 <button class="form-btn form-btn__reset" type="reset">Отмена</button>
+               </div>
+           </form>
+
+          <button class="add-tasks-btn">Добавить задачу +</button>
+        </div>
+
+
+
         <div class="tab tab-2">2</div>
+
+
+
+
         <div class="tab tab-3">3</div>
     </div>
 
 
 </section>
+
+
 
 
 </section>

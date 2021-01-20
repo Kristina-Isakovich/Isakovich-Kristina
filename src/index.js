@@ -1,3 +1,4 @@
+//Табы
 let tab = function () {
     let tabNav = document.querySelectorAll('.tabs-nav__item');
     let tabContent = document.querySelectorAll('.tab');
@@ -26,3 +27,18 @@ let tab = function () {
 };
 
 tab();
+
+//Модальное окно
+let addTasksBtn = document.querySelector('.add-tasks-btn');
+let resetTaskBtn = document.querySelector('.form-btn__reset');
+let formTask = document.querySelector('.add-task__form');
+
+addTasksBtn.addEventListener('click', () => {
+    formTask.style.display = 'flex';
+})
+
+resetTaskBtn.addEventListener('click', () => {
+    formTask.style.display = 'none';
+})
+
+
