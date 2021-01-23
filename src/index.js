@@ -29,16 +29,42 @@ let tab = function () {
 tab();
 
 //Модальное окно
-let addTasksBtn = document.querySelector('.add-tasks-btn');
-let resetTaskBtn = document.querySelector('.form-btn__reset');
+const addTasksBtn = document.querySelector('.add-tasks-btn');
+const resetTaskBtn = document.querySelector('.form-btn__reset');
+const submitTaskBtn = document.querySelector('.form-btn__submit');
 let formTask = document.querySelector('.add-task__form');
 
 addTasksBtn.addEventListener('click', () => {
     formTask.style.display = 'flex';
-})
+});
 
 resetTaskBtn.addEventListener('click', () => {
     formTask.style.display = 'none';
+});
+
+
+
+const tableTasks = document.querySelector('.current-tasks');
+const formName = document.getElementById('form-name');
+const formDescription = document.getElementById('form-description');
+const templateCurrentTasks = document.getElementById('template-current-tasks').content;
+
+
+formTask.addEventListener('submit', function (event) {
+    event.preventDefault();
+    renderTasks ();
+    formTask.style.display = 'none';
 })
+
+function renderTasks () {
+    const node = templateCurrentTasks.querySelector('.current-task');
+    let currentTask = node.cloneNode(true);
+
+    currentTask.querySelector('.current-task-name').textContent = formName.value;
+    currentTask.querySelector('.current-task-description').textContent = formDescription.value;
+    //добавить приоритет ???
+
+    tableTasks.append(currentTask);
+}
 
 

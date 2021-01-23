@@ -39,18 +39,18 @@
 
     <div class="tabs__content">
         <div class="tab is-active tab-1">
-          <template id="template-current-tasks"></template>
+            <ul class="current-tasks"></ul>
 
-          <ul class="current-tasks">
-            <li class="current-task">
-              <h2 class="current-task-name">Dthhhph</h2>
-              <p class="current-task-description">lorrmghtth hth trdrh trhsn  rh rh</p>
-              <p class="current-task-priority">Need</p>
-              <button class="task-btn btn__edit">Редактировать</button>
-              <button class="task-btn btn__do">Выполнить</button>
-              <button class="task-btn btn__delete">Удалить</button>
-            </li>
-          </ul>
+          <template id="template-current-tasks">
+                  <li class="current-task">
+                      <h2 class="current-task-name"></h2>
+                      <p class="current-task-description"></p>
+                      <p class="current-task-priority"></p>
+                      <button class="task-btn current-btn__edit">Редактировать</button>
+                      <button class="task-btn current-btn__do">Выполнить</button>
+                      <button class="task-btn current-btn__delete">Удалить</button>
+                  </li>
+          </template>
 
            <form class="add-task__form">
                <h1 class="form-title">Добавим новую задачу!</h1>
@@ -74,7 +74,7 @@
                </div>
 
                <div class="form-buttons">
-                 <button class="form-btn" type="submit">Добавить</button>
+                 <button class="form-btn form-btn__submit" type="submit">Добавить</button>
                  <button class="form-btn form-btn__reset" type="reset">Отмена</button>
                </div>
            </form>
@@ -84,7 +84,21 @@
 
 
 
-        <div class="tab tab-2">2</div>
+        <div class="tab tab-2">
+            <ul class="completed-tasks"></ul>
+
+            <template id="template-completed-tasks">
+                <li class="completed-task">
+                    <h2 class="completed-task-name"></h2>
+                    <p class="completed-task-description"></p>
+                    <p class="completed-task-priority"></p>
+                    <button class="task-btn btn__edit">Редактировать</button>
+                    <button class="task-btn btn__do">Выполнить</button>
+                    <button class="task-btn btn__delete">Удалить</button>
+                </li>
+            </template>
+
+        </div>
 
 
 
