@@ -36,17 +36,18 @@
   color: var(--accent-light);
 }
 
+.tabs-nav__item:hover {
+  background-color: var(--bcg-light);
+  color: var(--accent-dark);
+  transition: .5s ease;
+}
+
 .tabs-nav__item-icon{
   margin-right: 1.0rem;
-  color: var(--accent-dark);
 }
 
 .tabs-nav__item-title{
   font-size: 1.5rem;
-}
-
-.tabs-nav__item-title:hover{
-  color: var(--accent-dark);
 }
 
 .tabs-nav__item.is-active {
@@ -94,13 +95,6 @@
   }
 }
 
-
-
-
-.tabs__content {
-
-}
-
 .add-tasks-btn {
   position: fixed;
   bottom: 4.0rem;
@@ -110,11 +104,8 @@
   background-color: var(--bcg-light);
   border-radius: var(--radius);
   border: .1rem solid var(--accent-dark);
-  padding: 2.0rem;
+  padding: 1.8rem;
 }
-
-
-
 
 .tab {
   display: none;
@@ -127,7 +118,7 @@
 /* li */
 .current-task {
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: 20rem auto 15rem 12rem 9rem 9rem;
   grid-column-gap: 1.0rem;
   font-size: 1.2rem;
   color: var(--accent-light);
@@ -135,7 +126,6 @@
   padding: 2.0rem;
   background-color: var(--bcg-light);
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 2.0rem;
 }
 

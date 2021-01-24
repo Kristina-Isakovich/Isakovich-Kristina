@@ -48,7 +48,7 @@ const tableTasks = document.querySelector('.current-tasks');
 const formName = document.getElementById('form-name');
 const formDescription = document.getElementById('form-description');
 const templateCurrentTasks = document.getElementById('template-current-tasks').content;
-
+const todos =[];
 
 formTask.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -66,5 +66,36 @@ function renderTasks () {
 
     tableTasks.append(currentTask);
 }
+
+function saveTodos() {
+    let task = {
+        id: Math.random(),
+        name: formName.value,
+        description: formDescription.value,
+        priority: '', //????
+        state: TODO_STATE.CURRENT
+    }
+    todos.push(task);
+}
+
+function saveToStorage (arr) {
+    const data = JSON.stringify(arr);
+    localStorage.setItem(STORAGE_KEYS.TODOS, data);
+}
+
+
+
+//удаление
+
+const TODO_STATE = {
+    CURRENT: 'CURRENT',
+    DONE: 'DONE',
+    DELETE: 'DELETE'
+};
+
+const STORAGE_KEYS = {
+    TODOS: ''
+};
+
 
 

@@ -34,7 +34,7 @@ button{
 
 button:hover{
   background-color: var(--bcg-dark);
-  transition: .6s;
+  transition: .6s ease;
   transform: scale(1.1);
 }
 
