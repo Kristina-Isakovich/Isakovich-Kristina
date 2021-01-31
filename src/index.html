@@ -3,118 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-<section class="wrapper">
+<div class="wrapper">
 
-<nav class="tabs-nav">
-    <h1 class="tabs-nav-title">Меню задач</h1>
-    <div class="tabs-nav__item is-active" data-tab-name="tab-1">
-        <img class="tabs-nav__item-icon" src="./img/current-tasks-icon.svg" height="20" alt="tasks">
-        <span class="tabs-nav__item-title">Текущие задачи</span>
-    </div>
-
-    <div class="tabs-nav__item" data-tab-name="tab-2">
-        <img class="tabs-nav__item-icon" src="./img/check-box-icon.svg" height="20" alt="check-box">
-        <span class="tabs-nav__item-title">Выполненные задачи</span>
-    </div>
-
-    <div class="tabs-nav__item" data-tab-name="tab-3">
-        <img class="tabs-nav__item-icon" src="./img/trash-can-icon.svg" height="20" alt="trash-can">
-        <span class="tabs-nav__item-title">Удаленные задачи</span>
-    </div>
-</nav>
-
-<section class="task-list">
-    <header class="task-list-bar">
-        <div class="task-list-bar__wrap">
-          <h1 class="task-list-bar-title">Привет!</h1>
-          <p class="task-list-bar-text">Хорошего трудового Дня!</p>
+    <aside class="tabs-nav">
+        <h1 class="tabs-nav-title">Меню задач</h1>
+        <div class="tabs-nav__item is-active" data-tab-name="tab-1">
+            <img class="tabs-nav__item-icon" src="./img/current-tasks-icon.svg" height="20" alt="tasks">
+            <span class="tabs-nav__item-title">Текущие задачи</span>
         </div>
 
-        <img class="task-list-bar__img" src="./img/men.jpg" height="150" alt="men">
-    </header>
+        <div class="tabs-nav__item" data-tab-name="tab-2">
+            <img class="tabs-nav__item-icon" src="./img/check-box-icon.svg" height="20" alt="check-box">
+            <span class="tabs-nav__item-title">Выполненные задачи</span>
+        </div>
 
-    <div class="tabs__content">
-        <div class="tab is-active tab-1">
-            <ul class="current-tasks"></ul>
+        <div class="tabs-nav__item" data-tab-name="tab-3">
+            <img class="tabs-nav__item-icon" src="./img/trash-can-icon.svg" height="20" alt="trash-can">
+            <span class="tabs-nav__item-title">Удаленные задачи</span>
+        </div>
+    </aside>
 
-          <template id="template-current-tasks">
-                  <li class="current-task">
-                      <h2 class="current-task-name"></h2>
-                      <p class="current-task-description"></p>
-                      <p class="current-task-priority"></p>
-                      <button class="task-btn current-btn__edit">Редактировать</button>
-                      <button class="task-btn current-btn__do">Выполнить</button>
-                      <button class="task-btn current-btn__delete">Удалить</button>
-                  </li>
-          </template>
+    <section class="task-list">
+        <header class="task-list-bar">
+            <div class="task-list-bar__wrap">
+                <h1 class="task-list-bar-title">Привет!</h1>
+                <p class="task-list-bar-text">Хорошего трудового Дня!</p>
+            </div>
 
-           <form class="add-task__form">
-               <h1 class="form-title">Добавим новую задачу!</h1>
-               <label class="form__text" for="form-name">Название <span style="color: red">*</span></label>
-               <input type="text" id="form-name" required>
+            <img class="task-list-bar__img" src="./img/men.jpg" height="150" alt="men">
+        </header>
 
-               <label class="form__text" for="form-description">Описание</label>
-               <textarea  id="form-description"></textarea>
+        <div class="tabs__content">
+            <div class="tab is-active tab-1">
+                <ul class="current-tasks"></ul>
 
-               <div class="form-priority-case">
-                   <p class="form__text">Приоритет:</p>
+                <button class="add-tasks-btn">Добавить задачу +</button>
+            </div>
 
-                   <div class="form-priority__radio">
-                     <input type="radio" id="form-indefinite" name="form-priority" checked>
-                     <label for="form-indefinite">Бессрочное</label>
-                     <input type="radio" id="form-urgent" name="form-priority">
-                     <label for="form-urgent">Срочное</label>
-                     <input type="radio" id="form-trial" name="form-priority">
-                     <label for="form-trial">Триальное</label>
-                   </div>
-               </div>
+            <div class="tab tab-2">
+                <ul class="completed-tasks"></ul>
+            </div>
 
-               <div class="form-buttons">
-                 <button class="form-btn form-btn__submit" type="submit">Добавить</button>
-                 <button class="form-btn form-btn__reset" type="reset">Отмена</button>
-               </div>
-           </form>
-
-          <button class="add-tasks-btn">Добавить задачу +</button>
+            <div class="tab tab-3">
+                <ul class="deleted-tasks"></ul>
+            </div>
         </div>
 
 
+    </section>
+</div>
 
-        <div class="tab tab-2">
-            <ul class="completed-tasks"></ul>
+<template id="template-current-tasks">
+    <li class="current-task">
+        <h2 class="current-task-name"></h2>
+        <p class="current-task-description"></p>
+        <p class="current-task-priority"></p>
+        <button class="task-btn btn__edit">Редактировать</button>
+        <button class="task-btn btn__do">Выполнить</button>
+        <button class="task-btn btn__delete">Удалить</button>
+    </li>
+</template>
 
-            <template id="template-completed-tasks">
-                <li class="completed-task">
-                    <h2 class="completed-task-name"></h2>
-                    <p class="completed-task-description"></p>
-                    <p class="completed-task-priority"></p>
-                    <button class="task-btn btn__edit">Редактировать</button>
-                    <button class="task-btn btn__do">Выполнить</button>
-                    <button class="task-btn btn__delete">Удалить</button>
-                </li>
-            </template>
+<template id="template-completed-tasks">
+    <li class="completed-task">
+        <h2 class="completed-task-name"></h2>
+        <p class="completed-task-description"></p>
+        <p class="completed-task-priority"></p>
+        <button class="task-btn btn__edit">Редактировать</button>
+        <button class="task-btn btn__delete">Удалить</button>
+    </li>
+</template>
 
+<template id="template-deleted-tasks">
+    <li class="deleted-task">
+        <h2 class="deleted-task-name"></h2>
+        <p class="deleted-task-description"></p>
+        <p class="deleted-task-priority"></p>
+        <button class="task-btn btn__reestablish">Восстановить</button>
+    </li>
+</template>
+
+<form class="add-task__form" hidden="hidden">
+    <h1 class="form-title">Добавим новую задачу!</h1>
+    <label class="form__text" for="form-name">Название <span class="form__star">*</span></label>
+    <input type="text" id="form-name" required>
+
+    <label class="form__text" for="form-description">Описание</label>
+    <textarea id="form-description"></textarea>
+
+    <div class="form-priority-case">
+        <p class="form__text">Приоритет:</p>
+
+        <div class="form-priority__radio">
+            <input type="radio" id="form-indefinite" name="form-priority" value="Бессрочное" checked>
+            <label for="form-indefinite">Бессрочное</label>
+            <input type="radio" id="form-urgent" name="form-priority" value="Срочное">
+            <label for="form-urgent">Срочное</label>
+            <input type="radio" id="form-trial" name="form-priority" value="Триальное">
+            <label for="form-trial">Триальное</label>
         </div>
-
-
-
-
-        <div class="tab tab-3">3</div>
     </div>
 
-
-</section>
-
-
-
-
-</section>
+    <div class="form-buttons">
+        <button class="form-btn form-btn__submit" type="submit">Добавить</button>
+        <button class="form-btn form-btn__reset" type="reset">Отмена</button>
+    </div>
+</form>
 
 
-<script src="./index.js"></script>
+<script type="module" src="./index.js"></script>
 </body>
 </html>

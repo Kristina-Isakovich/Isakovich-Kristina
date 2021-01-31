@@ -4,7 +4,7 @@
 }
 
 :root{
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Cuprum', sans-serif;
   font-size: 62.5%;
 }
 
@@ -34,7 +34,7 @@ button{
 
 button:hover{
   background-color: var(--bcg-dark);
-  transition: .6s ease;
+  transition: all .5s ease;
   transform: scale(1.1);
 }
 

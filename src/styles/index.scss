@@ -117,20 +117,33 @@
 
 /* li */
 .current-task {
-  display: grid;
-  grid-template-columns: 20rem auto 15rem 12rem 9rem 9rem;
-  grid-column-gap: 1.0rem;
-  font-size: 1.2rem;
+  display: flex;
+  font-size: 1.5rem;
   color: var(--accent-light);
   border-radius: var(--radius);
   padding: 2.0rem;
   background-color: var(--bcg-light);
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 2.0rem;
+
+  :not(:last-child) {
+    margin-right: 1.0rem;
+  }
 }
 
 .current-task-name {
+  min-width: 20rem;
   color: var(--accent-dark);
+}
+
+.current-task-description {
+  width: 40rem;
+}
+
+.current-task-priority {
+  width: 10rem;
+  font-style: italic;
 }
 
 .task-btn {
@@ -142,7 +155,6 @@
 
 // Форма
 .add-task__form {
-  display: none;
   flex-direction: column;
   position: fixed;
   top: 50%;
@@ -157,6 +169,7 @@
   width: 50rem;
 
   > input {
+    width: -webkit-fill-available;
     margin-bottom: 1.0rem;
     background-color: var(--bcg-light);
     border-radius: var(--radius);
@@ -168,6 +181,7 @@
   }
 
   > textarea {
+    width: -webkit-fill-available;
     margin-bottom: 1.0rem;
     background-color: var(--bcg-light);
     border-radius: var(--radius);
@@ -186,7 +200,12 @@
   text-align: center;
 }
 
+.form__star {
+  color: red;
+}
+
 .form__text {
+  display: block;
   padding-left: 1.5rem;
   color: var(--accent-light);
 }
@@ -198,14 +217,14 @@
   :first-child {
     margin-right: 2.0rem;
   }
+}
 
-  :last-child {
-    display: grid;
-    color: var(--accent-light);
-    grid-template-columns: repeat(2, auto);
-    grid-row-gap: 1.0rem;
-    align-items: center;
-  }
+.form-priority__radio {
+  display: grid;
+  color: var(--accent-light);
+  grid-template-columns: repeat(2, auto);
+  grid-row-gap: 1.0rem;
+  align-items: center;
 }
 
 .form-buttons {
