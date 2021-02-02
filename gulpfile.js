@@ -13,16 +13,10 @@ function serve() {
     });
 }
 
-function copyJs(){
-    return src('src/index.js')
-        .pipe(dest('build'));
-}
-
 function copyImg(){
     return src('src/img/**')
         .pipe(dest('build/img/'));
 }
-
 
 function clean() {
     return src('build', {read: false, allowEmpty: true})
@@ -40,6 +34,11 @@ function transformSCSS() {
         .pipe(cleanCSS())
         .pipe(concat('index.css'))
         .pipe(dest('build/'));
+}
+
+function copyJs(){
+    return src('src/index.js')
+      .pipe(dest('build'));
 }
 
 function watchTasks() {

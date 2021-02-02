@@ -1,5 +1,5 @@
 //Табы
-let tab = function () {
+function tab() {
     let tabNav = document.querySelectorAll('.tabs-nav__item');
     let tabContent = document.querySelectorAll('.tab');
     let tabName;
@@ -24,7 +24,7 @@ let tab = function () {
                 item.classList.remove('is-active');
         })
     }
-};
+}
 
 tab();
 
@@ -60,7 +60,7 @@ formTask.addEventListener('submit', function (event) {
     formTask.reset();
     toggleModalHidden();
 
-    let todo = {
+    let todoCurrent = {
         id: Math.random(),
         name: formName.value,
         description: formDescription.value,
@@ -68,7 +68,7 @@ formTask.addEventListener('submit', function (event) {
         state: TODO_STATE.CURRENT
     };
 
-    todos.push(todo);
+    todos.push(todoCurrent);
     saveToStorage(todos);
 })
 
@@ -99,14 +99,37 @@ function saveToStorage (arr) {
     localStorage.setItem(STORAGE_KEYS.TODOS, data);
 }
 
+//выполненные
+const doTasksContent = document.getElementById('template-completed-tasks').content;
+const doTaskTemplate = doTasksContent.querySelector('.completed-task');
+const tableCompletedTasks = document.querySelector('.completed-tasks');
+const btnDo = document.querySelector('.btn__do');
+
+function doTaskElement () {
+    const doTask = doTaskTemplate.cloneNode(true);
+    doTask.querySelector('.completed-task-name').textContent = formName.value;
+    doTask.querySelector('.completed-task-description').textContent = formDescription.value;
+    doTask.querySelector('.completed-task-priority').textContent = priority;
+
+    return doTask;
+}
+
+function ToStorage () {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEYS.TODOS));
+}
+
+function renderDoTasks () {
+    const task = doTaskElement();
+    tableCompletedTasks.append(task);
+}
+
+btnDo.addEventListener('click', function () {
 
 
 
 
+})
 
-
-
-//удаление
 
 const TODO_STATE = {
     CURRENT: 'CURRENT',
@@ -117,6 +140,9 @@ const TODO_STATE = {
 const STORAGE_KEYS = {
     TODOS: ''
 };
+
+
+
 
 
 
