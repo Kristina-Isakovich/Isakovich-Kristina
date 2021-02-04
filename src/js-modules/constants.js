@@ -7,3 +7,5 @@ const TODO_STATE = {
 const STORAGE_KEYS = {
     TODOS: ''
 };
+
+export {TODO_STATE, STORAGE_KEYS};

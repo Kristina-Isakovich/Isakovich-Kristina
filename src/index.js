@@ -1,3 +1,22 @@
+const TODO_STATE = {
+    CURRENT: 'CURRENT',
+    DONE: 'DONE',
+    DELETE: 'DELETE'
+};
+
+const STORAGE_KEYS = {
+    TODOS: ''
+};
+
+function showTasks(){
+    let getLocalStorageData = localStorage.getItem(STORAGE_KEYS.TODOS);
+    if(getLocalStorageData == null){
+        todos = [];
+    }else{
+        todos = JSON.parse(getLocalStorageData);
+    }
+}
+
 //Табы
 function tab() {
     let tabNav = document.querySelectorAll('.tabs-nav__item');
@@ -39,10 +58,7 @@ function toggleModalHidden() {
 }
 
 addTasksBtn.addEventListener('click', toggleModalHidden);
-
 resetTaskBtn.addEventListener('click', toggleModalHidden);
-
-
 
 //todos
 const tableTasks = document.querySelector('.current-tasks');
@@ -50,7 +66,7 @@ const formName = document.getElementById('form-name');
 const formDescription = document.getElementById('form-description');
 const currentTasksContent = document.getElementById('template-current-tasks').content;
 const taskTemplate = currentTasksContent.querySelector('.current-task');
-const todos =[];
+let todos =[];
 let priority = null;
 
 formTask.addEventListener('submit', function (event) {
@@ -105,6 +121,12 @@ const doTaskTemplate = doTasksContent.querySelector('.completed-task');
 const tableCompletedTasks = document.querySelector('.completed-tasks');
 const btnDo = document.querySelector('.btn__do');
 
+function deleteTask() {
+    const listItem = this.parentNode;
+    const ul = listItem.parentNode;
+    ul.removeChild(listItem);
+}
+
 function doTaskElement () {
     const doTask = doTaskTemplate.cloneNode(true);
     doTask.querySelector('.completed-task-name').textContent = formName.value;
@@ -114,32 +136,16 @@ function doTaskElement () {
     return doTask;
 }
 
-function ToStorage () {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEYS.TODOS));
-}
-
 function renderDoTasks () {
     const task = doTaskElement();
     tableCompletedTasks.append(task);
 }
 
-btnDo.addEventListener('click', function () {
+btnDo.addEventListener('click', function (){
+    deleteTask();
+});
 
 
-
-
-})
-
-
-const TODO_STATE = {
-    CURRENT: 'CURRENT',
-    DONE: 'DONE',
-    DELETE: 'DELETE'
-};
-
-const STORAGE_KEYS = {
-    TODOS: ''
-};
 
 
 
