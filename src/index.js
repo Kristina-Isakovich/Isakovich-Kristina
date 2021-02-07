@@ -1,148 +1,196 @@
 const TODO_STATE = {
-    CURRENT: 'CURRENT',
-    DONE: 'DONE',
-    DELETE: 'DELETE'
+  CURRENT: 'CURRENT',
+  DONE: 'DONE',
+  DELETE: 'DELETE'
 };
-
-const STORAGE_KEYS = {
-    TODOS: ''
+let STORAGE_KEYS = {
+  TODOS: ''
 };
+let todos = [];
 
-function showTasks(){
-    let getLocalStorageData = localStorage.getItem(STORAGE_KEYS.TODOS);
-    if(getLocalStorageData == null){
-        todos = [];
-    }else{
-        todos = JSON.parse(getLocalStorageData);
-    }
-}
+const tableTasks = document.querySelector('.current-tasks');
+const formName = document.getElementById('form-name');
+const formDescription = document.getElementById('form-description');
+const currentTasksContent = document.getElementById('template-current-tasks').content;
+const taskTemplate = currentTasksContent.querySelector('.current-task');
 
-//Табы
+//Tabs
 function tab() {
-    let tabNav = document.querySelectorAll('.tabs-nav__item');
-    let tabContent = document.querySelectorAll('.tab');
-    let tabName;
+  const tabNav = document.querySelectorAll('.tabs-nav__item');
+  const tabContent = document.querySelectorAll('.tab');
+  let tabName;
 
+  tabNav.forEach(item => {
+    item.addEventListener('click', selectTabNav)
+  });
+
+  function selectTabNav() {
     tabNav.forEach(item => {
-        item.addEventListener('click', selectTabNav)
+      item.classList.remove('is-active');
     });
+    this.classList.add('is-active');
+    tabName = this.getAttribute('data-tab-name');
+    selectTabContent(tabName);
+  }
 
-    function selectTabNav() {
-        tabNav.forEach(item => {
-            item.classList.remove('is-active');
-        });
-        this.classList.add('is-active');
-        tabName = this.getAttribute('data-tab-name');
-        selectTabContent(tabName);
-    }
-
-    function selectTabContent(tabName) {
-        tabContent.forEach(item => {
-            item.classList.contains(tabName) ?
-                item.classList.add('is-active') :
-                item.classList.remove('is-active');
-        })
-    }
+  function selectTabContent(tabName) {
+    tabContent.forEach(item => {
+      item.classList.contains(tabName) ?
+        item.classList.add('is-active') :
+        item.classList.remove('is-active');
+    })
+  }
 }
 
 tab();
 
+//элементы со Storage
+function addCurrentTasks(item) {
+  const currentTask = taskTemplate.cloneNode(true);
+
+  currentTask.querySelector('.current-task-name').textContent = item.name;
+  currentTask.querySelector('.current-task-description').textContent = item.description;
+  currentTask.querySelector('.current-task-priority').textContent = item.priority;
+
+  tableTasks.append(currentTask);
+}
+
+function addDoneTasks(item) {
+  const doneTask = doneTaskTemplate.cloneNode(true);
+  doneTask.querySelector('.completed-task-name').textContent = item.name;
+  doneTask.querySelector('.completed-task-description').textContent = item.description;
+  doneTask.querySelector('.completed-task-priority').textContent = item.priority;
+
+  tableCompletedTasks.append(doneTask);
+}
+
+function addDeleteTasks(item) {
+
+}
+
+function taskElementFromStorage() {
+  todos.forEach(item => {
+    if(item.state === TODO_STATE.CURRENT){
+      addCurrentTasks(item);
+    } else if (item.state === TODO_STATE.DONE){
+      addDoneTasks(item);
+    } else if (item.state === TODO_STATE.DELETE){
+      addDeleteTasks(item);
+    }
+  })
+}
+
+function showTasks() {
+  let getLocalStorageData = localStorage.getItem(STORAGE_KEYS.TODOS);
+  if (getLocalStorageData !== null) {
+    todos = JSON.parse(getLocalStorageData);
+    taskElementFromStorage();
+  }
+}
+
+showTasks();
+
+
 //Модальное окно
 const addTasksBtn = document.querySelector('.add-tasks-btn');
 const resetTaskBtn = document.querySelector('.form-btn__reset');
-const submitTaskBtn = document.querySelector('.form-btn__submit');
 let formTask = document.querySelector('.add-task__form');
 
 function toggleModalHidden() {
-    formTask.hidden = !formTask.hidden;
+  formTask.hidden = !formTask.hidden;
 }
 
 addTasksBtn.addEventListener('click', toggleModalHidden);
 resetTaskBtn.addEventListener('click', toggleModalHidden);
 
 //todos
-const tableTasks = document.querySelector('.current-tasks');
-const formName = document.getElementById('form-name');
-const formDescription = document.getElementById('form-description');
-const currentTasksContent = document.getElementById('template-current-tasks').content;
-const taskTemplate = currentTasksContent.querySelector('.current-task');
-let todos =[];
-let priority = null;
+let priority;
 
 formTask.addEventListener('submit', function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    renderTasks ();
-    formTask.reset();
-    toggleModalHidden();
-
-    let todoCurrent = {
-        id: Math.random(),
-        name: formName.value,
-        description: formDescription.value,
-        priority: priority,
-        state: TODO_STATE.CURRENT
-    };
-
-    todos.push(todoCurrent);
-    saveToStorage(todos);
+  renderTasks();
+  formTask.reset();
+  toggleModalHidden();
+  saveToStorage(todos);
 })
 
+function addCurrentTaskInArr() {
+  let todoCurrent = {
+    id: Math.random(),
+    name: formName.value,
+    description: formDescription.value,
+    priority: priority,
+    state: TODO_STATE.CURRENT
+  };
+
+  todos.push(todoCurrent);
+}
+
 function createTaskElement() {
-    const currentTask = taskTemplate.cloneNode(true);
-    const formPriority = document.getElementsByName('form-priority');
+  const currentTask = taskTemplate.cloneNode(true);
+  const formPriority = document.getElementsByName('form-priority');
 
-    formPriority.forEach(item => {
-        if(item.checked){
-            priority = item.value;
-        }
-    })
+  formPriority.forEach(item => {
+    if (item.checked) {
+      priority = item.value;
+    }
+  })
 
-    currentTask.querySelector('.current-task-name').textContent = formName.value;
-    currentTask.querySelector('.current-task-description').textContent = formDescription.value;
-    currentTask.querySelector('.current-task-priority').textContent = priority;
+  currentTask.querySelector('.current-task-name').textContent = formName.value;
+  currentTask.querySelector('.current-task-description').textContent = formDescription.value;
+  currentTask.querySelector('.current-task-priority').textContent = priority;
 
-    return currentTask;
+  return currentTask;
 }
 
-function renderTasks () {
-    const task = createTaskElement();
-    tableTasks.append(task);
+function renderTasks() {
+  const task = createTaskElement();
+  tableTasks.append(task);
+  addCurrentTaskInArr();
 }
 
-function saveToStorage (arr) {
-    const data = JSON.stringify(arr);
-    localStorage.setItem(STORAGE_KEYS.TODOS, data);
+function saveToStorage(arr) {
+  const data = JSON.stringify(arr);
+  localStorage.setItem(STORAGE_KEYS.TODOS, data);
 }
 
 //выполненные
-const doTasksContent = document.getElementById('template-completed-tasks').content;
-const doTaskTemplate = doTasksContent.querySelector('.completed-task');
+const doneTasksContent = document.getElementById('template-completed-tasks').content;
+const doneTaskTemplate = doneTasksContent.querySelector('.completed-task');
 const tableCompletedTasks = document.querySelector('.completed-tasks');
 const btnDo = document.querySelector('.btn__do');
 
-function deleteTask() {
-    const listItem = this.parentNode;
-    const ul = listItem.parentNode;
-    ul.removeChild(listItem);
+function deleteCurrentTask(item) {
+  const listItem = item.parentNode;
+  tableTasks.removeChild(listItem);
 }
 
-function doTaskElement () {
-    const doTask = doTaskTemplate.cloneNode(true);
-    doTask.querySelector('.completed-task-name').textContent = formName.value;
-    doTask.querySelector('.completed-task-description').textContent = formDescription.value;
-    doTask.querySelector('.completed-task-priority').textContent = priority;
-
-    return doTask;
+function doneTaskStorage(item) {
+  todos = JSON.parse(localStorage.getItem(STORAGE_KEYS.TODOS));
+  todos.item.state = TODO_STATE.DONE;
+  saveToStorage(todos);
 }
 
-function renderDoTasks () {
-    const task = doTaskElement();
-    tableCompletedTasks.append(task);
+function doneTaskElement(item) {
+  const doneTask = doneTaskTemplate.cloneNode(true);
+
+  doneTask.querySelector('.completed-task-name').textContent = item.name;
+  doneTask.querySelector('.completed-task-description').textContent = item.description;
+  doneTask.querySelector('.completed-task-priority').textContent = item.priority;
+
+  return doneTask;
 }
 
-btnDo.addEventListener('click', function (){
-    deleteTask();
+function renderDoneTasks(item) {
+  const task = doneTaskElement(item);
+  tableCompletedTasks.append(task);
+}
+
+btnDo.addEventListener('click', item => {
+  deleteCurrentTask(item.target);
+  renderDoneTasks(item.target);
+  doneTaskStorage(item.target)
 });
 
 

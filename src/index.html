@@ -56,8 +56,8 @@
 </div>
 
 <template id="template-current-tasks">
-    <li class="current-task">
-        <h2 class="current-task-name"></h2>
+    <li class="current-task task">
+        <h2 class="current-task-name task-name"></h2>
         <p class="current-task-description"></p>
         <p class="current-task-priority"></p>
         <button class="task-btn btn__edit">Редактировать</button>
@@ -67,8 +67,8 @@
 </template>
 
 <template id="template-completed-tasks">
-    <li class="completed-task">
-        <h2 class="completed-task-name"></h2>
+    <li class="completed-task task">
+        <h2 class="completed-task-name task-name"></h2>
         <p class="completed-task-description"></p>
         <p class="completed-task-priority"></p>
         <button class="task-btn btn__edit">Редактировать</button>
@@ -77,8 +77,8 @@
 </template>
 
 <template id="template-deleted-tasks">
-    <li class="deleted-task">
-        <h2 class="deleted-task-name"></h2>
+    <li class="deleted-task task">
+        <h2 class="deleted-task-name task-name"></h2>
         <p class="deleted-task-description"></p>
         <p class="deleted-task-priority"></p>
         <button class="task-btn btn__reestablish">Восстановить</button>
@@ -113,5 +113,13 @@
 </form>
 
 <script type="module" src="./index.js"></script>
+<!--
+<script type="module" src="./js-modules/tabs.js"></script>
+-->
+
+<!--<script type="module" src="./js-modules/constants.js"></script>
+<script type="module" src="./js-modules/modal.js"></script>
+<script type="module" src="./js-modules/addTasks.js"></script>-->
+
 </body>
 </html>

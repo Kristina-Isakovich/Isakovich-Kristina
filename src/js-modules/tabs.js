@@ -19,10 +19,10 @@ function tab() {
     function selectTabContent(tabName) {
         tabContent.forEach(item => {
             item.classList.contains(tabName) ?
-                item.classList.add('is-active') :
-                item.classList.remove('is-active');
+              item.classList.add('is-active') :
+              item.classList.remove('is-active');
         })
     }
 }
 
-tab();
+export {tab};

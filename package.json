@@ -9,8 +9,6 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.13",
-    "gulp-concat": "^2.6.1",
-    "gulp-plumber": "^1.2.1",
-    "gulp-uglify": "^3.0.2"
+    "gulp-concat": "^2.6.1"
   }
 }

@@ -36,7 +36,12 @@ function transformSCSS() {
         .pipe(dest('build/'));
 }
 
-function copyJs(){
+function jsModules(){
+    return src('src/js-modules/**/*.js')
+      .pipe(dest('build/js-modules/'));
+}
+
+function copyJS() {
     return src('src/index.js')
       .pipe(dest('build'));
 }
@@ -44,14 +49,15 @@ function copyJs(){
 function watchTasks() {
     watch('src/index.html', copyHTML);
     watch('src/styles/**/*.scss', transformSCSS);
-    watch('src/index.js', copyJs)
+    watch('src/js/**/*.js', jsModules);
+    watch('src/index.js', copyJS)
 }
 
 exports.clean = clean;
 exports.watch = watchTasks;
 exports.style = transformSCSS;
 exports.default = series(
-    clean, copyImg,
-    parallel(copyJs, copyHTML, transformSCSS),
+    clean, copyImg, copyJS,
+    parallel(jsModules, copyHTML, transformSCSS),
     parallel(watchTasks, serve)
 );
