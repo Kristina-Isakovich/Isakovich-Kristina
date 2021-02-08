@@ -70,11 +70,11 @@ function addDeleteTasks(item) {
 
 function taskElementFromStorage() {
   todos.forEach(item => {
-    if(item.state === TODO_STATE.CURRENT){
+    if (item.state === TODO_STATE.CURRENT) {
       addCurrentTasks(item);
-    } else if (item.state === TODO_STATE.DONE){
+    } else if (item.state === TODO_STATE.DONE) {
       addDoneTasks(item);
-    } else if (item.state === TODO_STATE.DELETE){
+    } else if (item.state === TODO_STATE.DELETE) {
       addDeleteTasks(item);
     }
   })
@@ -168,8 +168,13 @@ function deleteCurrentTask(item) {
 
 function doneTaskStorage(item) {
   todos = JSON.parse(localStorage.getItem(STORAGE_KEYS.TODOS));
-  todos.item.state = TODO_STATE.DONE;
-  saveToStorage(todos);
+  todos.forEach(el => {
+    if (el.name === item){
+      el.state = TODO_STATE.DONE;
+      todos.push(el);
+      saveToStorage(todos);
+    }
+  })
 }
 
 function doneTaskElement(item) {
@@ -187,10 +192,14 @@ function renderDoneTasks(item) {
   tableCompletedTasks.append(task);
 }
 
-btnDo.addEventListener('click', item => {
-  deleteCurrentTask(item.target);
-  renderDoneTasks(item.target);
-  doneTaskStorage(item.target)
+tableTasks.addEventListener('click', event => { //????
+
+  if (event.target.classList.contains('btn__do')){
+    const item = event.target;
+    deleteCurrentTask(item);
+    renderDoneTasks(item);
+    doneTaskStorage(item)
+  }
 });
 
 
