@@ -1,4 +1,4 @@
-function tab() {
+ export function tab() {
     const tabNav = document.querySelectorAll('.tabs-nav__item');
     const tabContent = document.querySelectorAll('.tab');
     let tabName;
@@ -24,5 +24,3 @@ function tab() {
         })
     }
 }
-
-export {tab};

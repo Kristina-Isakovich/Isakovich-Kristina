@@ -36,21 +36,15 @@ function transformSCSS() {
     .pipe(dest('build/'));
 }
 
-function jsModules() {
+function copyJS() {
   return src('src/js-modules/**/*.js')
     .pipe(dest('build/js-modules/'));
-}
-
-function copyJS() {
-  return src('src/index.js')
-    .pipe(dest('build'));
 }
 
 function watchTasks() {
   watch('src/index.html', copyHTML);
   watch('src/styles/**/*.scss', transformSCSS);
-  watch('src/js/**/*.js', jsModules);
-  watch('src/index.js', copyJS)
+  watch('src/js-modules/**/*.js', copyJS);
 }
 
 exports.clean = clean;
@@ -59,6 +53,6 @@ exports.style = transformSCSS;
 exports.default = series(
   clean,
   parallel(copyImg, copyJS),
-  parallel(jsModules, copyHTML, transformSCSS),
+  parallel(copyHTML, transformSCSS),
   parallel(watchTasks, serve)
 );

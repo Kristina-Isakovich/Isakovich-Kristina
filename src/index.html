@@ -55,34 +55,19 @@
   </section>
 </div>
 
-<template id="template-current-tasks">
-  <li class="current-task task">
-    <h2 class="current-task-name task-name"></h2>
-    <p class="current-task-description"></p>
-    <p class="current-task-priority"></p>
-    <button class="task-btn btn__edit">Редактировать</button>
-    <button class="task-btn btn__do">Выполнить</button>
-    <button class="task-btn btn__delete">Удалить</button>
+<template id="template-tasks">
+  <li class="task">
+    <h2 class="task-name"></h2>
+    <p class="task-description"></p>
+    <p class="task-priority"></p>
   </li>
 </template>
 
-<template id="template-completed-tasks">
-  <li class="completed-task task">
-    <h2 class="completed-task-name task-name"></h2>
-    <p class="completed-task-description"></p>
-    <p class="completed-task-priority"></p>
-    <button class="task-btn btn__edit">Редактировать</button>
-    <button class="task-btn btn__delete">Удалить</button>
-  </li>
-</template>
-
-<template id="template-deleted-tasks">
-  <li class="deleted-task task">
-    <h2 class="deleted-task-name task-name"></h2>
-    <p class="deleted-task-description"></p>
-    <p class="deleted-task-priority"></p>
-    <button class="task-btn btn__reestablish">Восстановить</button>
-  </li>
+<template id="template-btn">
+  <button class="task-btn btn__edit">Редактировать</button>
+  <button class="task-btn btn__do">Выполнить</button>
+  <button class="task-btn btn__delete">Удалить</button>
+  <button class="task-btn btn__reestablish">Восстановить</button>
 </template>
 
 <form class="add-task__form" hidden="hidden">
@@ -112,14 +97,13 @@
   </div>
 </form>
 
-<script type="module" src="./index.js"></script>
-<!--
-<script type="module" src="./js-modules/tabs.js"></script>
--->
-
-<!--<script type="module" src="./js-modules/constants.js"></script>
+<script type="module" src="./js-modules/index.js"></script>
+<script type="module" src="./js-modules/local-storage.js"></script>
 <script type="module" src="./js-modules/modal.js"></script>
-<script type="module" src="./js-modules/addTasks.js"></script>-->
+<script type="module" src="./js-modules/tasts-elements.js"></script>
+<script type="module" src="./js-modules/add-tasks.js"></script>
+<script type="module" src="./js-modules/constants.js"></script>
+<script type="module" src="./js-modules/done-tasks.js"></script>
 
 </body>
 </html>

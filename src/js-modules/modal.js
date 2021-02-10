@@ -10,4 +10,4 @@ addTasksBtn.addEventListener('click', toggleModalHidden);
 
 resetTaskBtn.addEventListener('click', toggleModalHidden);
 
-export {toggleModalHidden, addTasksBtn, resetTaskBtn, formTask};
+export {toggleModalHidden, formTask};
