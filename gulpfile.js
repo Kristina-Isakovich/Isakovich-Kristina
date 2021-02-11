@@ -3,6 +3,8 @@ const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
 const gulpClean = require('gulp-clean');
+const uglifyJs = require('gulp-uglify');
+const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync').create();
 
 function serve() {
@@ -37,14 +39,14 @@ function transformSCSS() {
 }
 
 function copyJS() {
-  return src('src/js-modules/**/*.js')
-    .pipe(dest('build/js-modules/'));
+  return src('src/index.js')
+    .pipe(dest('build'));
 }
 
 function watchTasks() {
   watch('src/index.html', copyHTML);
   watch('src/styles/**/*.scss', transformSCSS);
-  watch('src/js-modules/**/*.js', copyJS);
+  watch('src/index.js', copyJS);
 }
 
 exports.clean = clean;

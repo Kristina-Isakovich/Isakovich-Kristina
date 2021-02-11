@@ -1,17 +1,22 @@
 import {tableTasks} from './add-tasks.js';
-import {doneTaskStorage} from "./local-storage.js";
-import {addDoneTasks} from './tasts-elements.js';
+import {doneTaskStorage, findTaskElement} from "./local-storage.js";
+import {addDoneTasks} from './tasks-elements.js';
 
-function deleteCurrentTask(item) {
+function deleteTask(item) {
   const listItem = item.parentNode;
   tableTasks.removeChild(listItem);
 }
 
 tableTasks.addEventListener('click', event => {
-
   if (event.target.classList.contains('btn__do')){
-    deleteCurrentTask(event.target);
+    deleteTask(event.target);
+
+    const elementId = event.target.parentNode.getAttribute('data-id');
+    const item = findTaskElement(elementId);
+
     addDoneTasks(item);
-    doneTaskStorage(item)
+    doneTaskStorage(elementId);
   }
 });
+
+export {deleteTask};

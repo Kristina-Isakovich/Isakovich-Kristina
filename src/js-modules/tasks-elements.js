@@ -45,4 +45,4 @@ function addDeleteTasks (item) {
   tableDeleteTasks.append(task);
 }
 
-export {addCurrentTasks, addDoneTasks, addDeleteTasks, templateBtnEdit, templateBtnDo, templateBtnDelete};
+export {addCurrentTasks, addDoneTasks, addDeleteTasks, templateBtnEdit, templateBtnDo, templateBtnDelete, tableCurrentTasks};

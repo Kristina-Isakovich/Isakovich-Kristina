@@ -70,6 +70,33 @@
   <button class="task-btn btn__reestablish">Восстановить</button>
 </template>
 
+<form class="form-edit" hidden="hidden">
+  <h1 class="form-title">Редактирование задачи!</h1>
+  <label class="form__text" for="form-edit-name">Название <span class="form__star">*</span></label>
+  <input type="text" id="form-edit-name" required>
+
+  <label class="form__text" for="form-edit-description">Описание</label>
+  <textarea id="form-edit-description"></textarea>
+
+  <div class="form-edit-priority-case">
+    <p class="form-edit__text">Приоритет:</p>
+
+    <div class="form-priority__radio">
+      <input type="radio" id="form-edit-indefinite" name="form-edit-priority" value="Бессрочное">
+      <label for="form-edit-indefinite">Бессрочное</label>
+      <input type="radio" id="form-edit-urgent" name="form-edit-priority" value="Срочное">
+      <label for="form-edit-urgent">Срочное</label>
+      <input type="radio" id="form-edit-trial" name="form-edit-priority" value="Триальное">
+      <label for="form-edit-trial">Триальное</label>
+    </div>
+  </div>
+
+  <div class="form-edit-buttons">
+    <button class="form-btn form-edit-btn__submit" type="submit">Редактировать</button>
+    <button class="form-btn form-edit-btn__reset" type="reset">Отмена</button>
+  </div>
+</form>
+
 <form class="add-task__form" hidden="hidden">
   <h1 class="form-title">Добавим новую задачу!</h1>
   <label class="form__text" for="form-name">Название <span class="form__star">*</span></label>
@@ -97,13 +124,7 @@
   </div>
 </form>
 
-<script type="module" src="./js-modules/index.js"></script>
-<script type="module" src="./js-modules/local-storage.js"></script>
-<script type="module" src="./js-modules/modal.js"></script>
-<script type="module" src="./js-modules/tasts-elements.js"></script>
-<script type="module" src="./js-modules/add-tasks.js"></script>
-<script type="module" src="./js-modules/constants.js"></script>
-<script type="module" src="./js-modules/done-tasks.js"></script>
+<script type="module" src="./index.js"></script>
 
 </body>
 </html>
