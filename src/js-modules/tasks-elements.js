@@ -1,48 +1,78 @@
-const tableCurrentTasks = document.querySelector('.current-tasks');
-const tableCompletedTasks = document.querySelector('.completed-tasks');
-const tableDeleteTasks = document.querySelector('.deleted-tasks');
+import {
+  templateBtnEdit,
+  templateBtnDo,
+  templateBtnDelete,
+  templateBtnReestablish,
+  tableCurrentTasks,
+  tableCompletedTasks,
+  tableDeleteTasks
+} from './elements.js'
 
-const templateTasksContent = document.getElementById('template-tasks').content;
-const templateTask = templateTasksContent.querySelector('.task');
-const templateBtnContent = document.getElementById('template-btn').content;
-const templateBtnDo = templateBtnContent.querySelector('.btn__do');
-const templateBtnDelete = templateBtnContent.querySelector('.btn__delete');
-const templateBtnEdit = templateBtnContent.querySelector('.btn__edit');
-const templateBtnReestablish = templateBtnContent.querySelector('.btn__reestablish');
+function renderTasksByType(todos) {
+  todos.forEach(item => {
+    if (item.state === TODO_STATE.CURRENT) {
+      addCurrentTasks(item)
+    } else if (item.state === TODO_STATE.DONE) {
+      addDoneTasks(item)
+    } else if (item.state === TODO_STATE.DELETE) {
+      addDeleteTasks(item)
+    }
+  })
+}
+
+function findTaskElement(id) {
+  return todos.find(item => item.id === Number(id))
+}
+
+function deleteTaskFromTable(item, table) {
+  const listItem = item.parentNode
+  table.removeChild(listItem)
+}
 
 function createTaskElement(item) {
-  const task = templateTask.cloneNode(true);
+  const task = templateTask.cloneNode(true)
 
-  task.querySelector('.task-name').textContent = item.name;
-  task.querySelector('.task-description').textContent = item.description;
-  task.querySelector('.task-priority').textContent = item.priority;
+  task.querySelector('.task-name').textContent = item.name
+  task.querySelector('.task-description').textContent = item.description
+  task.querySelector('.task-priority').textContent = item.priority
+  task.setAttribute('data-id', item.id)
 
-  return task;
+  return task
 }
 
-function addCurrentTasks (item) {
-  const btnEdit = templateBtnEdit.cloneNode(true);
-  const btnDo = templateBtnDo.cloneNode(true);
-  const btnDelete = templateBtnDelete.cloneNode(true);
-  const task = createTaskElement(item).append(btnEdit, btnDo, btnDelete);
+function addCurrentTasks(item) {
+  const btnEdit = templateBtnEdit.cloneNode(true)
+  const btnDo = templateBtnDo.cloneNode(true)
+  const btnDelete = templateBtnDelete.cloneNode(true)
+  const task = createTaskElement(item)
+  task.append(btnEdit, btnDo, btnDelete)
 
-  tableCurrentTasks.append(task);
+  tableCurrentTasks.append(task)
 }
 
-function addDoneTasks (item) {
-  const btnEdit = templateBtnEdit.cloneNode(true);
-  const btnDelete = templateBtnDelete.cloneNode(true);
-  const task = createTaskElement(item).append(btnEdit, btnDelete);
+function addDoneTasks(item) {
+  const btnEdit = templateBtnEdit.cloneNode(true)
+  const btnDelete = templateBtnDelete.cloneNode(true)
+  const task = createTaskElement(item)
+  task.append(btnEdit, btnDelete)
 
-  tableCompletedTasks.append(task);
+  tableCompletedTasks.append(task)
 }
 
-function addDeleteTasks (item) {
-  const btnReestablish = templateBtnReestablish.cloneNode(true);
-  const btnDelete = templateBtnDelete.cloneNode(true);
-  const task = createTaskElement(item).append(btnReestablish, btnDelete);
+function addDeleteTasks(item) {
+  const btnReestablish = templateBtnReestablish.cloneNode(true)
+  const btnDelete = templateBtnDelete.cloneNode(true)
+  const task = createTaskElement(item)
+  task.append(btnReestablish, btnDelete)
 
-  tableDeleteTasks.append(task);
+  tableDeleteTasks.append(task)
 }
 
-export {addCurrentTasks, addDoneTasks, addDeleteTasks, templateBtnEdit, templateBtnDo, templateBtnDelete, tableCurrentTasks};
+export {
+  renderTasksByType,
+  findTaskElement,
+  deleteTaskFromTable,
+  addCurrentTasks,
+  addDoneTasks,
+  addDeleteTasks
+}

@@ -1,22 +1,16 @@
-import {tableTasks} from './add-tasks.js';
-import {doneTaskStorage, findTaskElement} from "./local-storage.js";
-import {addDoneTasks} from './tasks-elements.js';
+import { TODO_STATE } from './constants.js'
+import { tableCurrentTasks } from './elements.js'
+import { addDoneTasks, deleteTaskFromTable } from './tasks-elements.js'
+import { saveToStorage } from './local-storage.js'
 
-function deleteTask(item) {
-  const listItem = item.parentNode;
-  tableTasks.removeChild(listItem);
-}
+tableCurrentTasks.addEventListener('click', event => {
+  if (event.target.classList.contains('btn__do')) {
+    const elementId = event.target.parentNode.getAttribute('data-id')
+    const item = findTaskElement(elementId)
+    item.state = TODO_STATE.DONE
 
-tableTasks.addEventListener('click', event => {
-  if (event.target.classList.contains('btn__do')){
-    deleteTask(event.target);
-
-    const elementId = event.target.parentNode.getAttribute('data-id');
-    const item = findTaskElement(elementId);
-
-    addDoneTasks(item);
-    doneTaskStorage(elementId);
+    deleteTaskFromTable(event.target, tableCurrentTasks)
+    addDoneTasks(item)
+    saveToStorage(todos)
   }
-});
-
-export {deleteTask};
+})

@@ -123,7 +123,9 @@
 
 /* li */
 .task {
-  display: flex;
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(6, 1fr);
   font-size: 1.5rem;
   color: var(--accent-light);
   border-radius: var(--radius);
@@ -132,12 +134,12 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2.0rem;
-
-  :not(:last-child) {
-    margin-right: 1.0rem;
-  }
 }
 
+.completed-tasks > .task,
+.deleted-tasks > .task {
+  grid-template-columns: repeat(5, 1fr);
+}
 
 .task-name {
   min-width: 20rem;
@@ -161,7 +163,8 @@
 }
 
 // Форма
-.add-task__form {
+.add-task__form,
+.form-edit {
   flex-direction: column;
   position: fixed;
   top: 50%;
@@ -217,7 +220,8 @@
   color: var(--accent-light);
 }
 
-.form-priority-case {
+.form-priority-case,
+.form-edit-priority-case {
   display: flex;
   margin-bottom: 1.0rem;
 
@@ -234,7 +238,8 @@
   align-items: center;
 }
 
-.form-buttons {
+.form-buttons,
+.form-edit-buttons {
   text-align: center;
 
   :first-child {

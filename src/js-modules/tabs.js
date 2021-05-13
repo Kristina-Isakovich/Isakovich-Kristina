@@ -1,30 +1,26 @@
-import {showTasks} from "./local-storage";
-
 export function tab() {
-    const tabNav = document.querySelectorAll('.tabs-nav__item');
-    const tabContent = document.querySelectorAll('.tab');
-    let tabName;
+  const tabNav = document.querySelectorAll('.tabs-nav__item')
+  const tabContent = document.querySelectorAll('.tab')
+  let tabName
 
+  tabNav.forEach(item => {
+    item.addEventListener('click', selectTabNav)
+  })
+
+  function selectTabNav() {
     tabNav.forEach(item => {
-        item.addEventListener('click', selectTabNav)
-    });
+      item.classList.remove('is-active')
+    })
+    this.classList.add('is-active')
+    tabName = this.getAttribute('data-tab-name')
+    selectTabContent(tabName)
+  }
 
-    function selectTabNav() {
-        tabNav.forEach(item => {
-            item.classList.remove('is-active');
-        });
-        this.classList.add('is-active');
-        tabName = this.getAttribute('data-tab-name');
-        selectTabContent(tabName);
-    }
-
-    function selectTabContent(tabName) {
-        tabContent.forEach(item => {
-            item.classList.contains(tabName) ?
-              item.classList.add('is-active') :
-              item.classList.remove('is-active');
-        })
-    }
+  function selectTabContent(tabName) {
+    tabContent.forEach(item => {
+      item.classList.contains(tabName) ?
+        item.classList.add('is-active') :
+        item.classList.remove('is-active')
+    })
+  }
 }
-
-tab();
