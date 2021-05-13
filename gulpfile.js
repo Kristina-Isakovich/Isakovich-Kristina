@@ -27,14 +27,14 @@ gulp.task('scss', function () {
       overrideBrowserslist: ['last 10 versions']
     }))
     .pipe(cleanCSS())
-    .pipe(gulp.dest('src/css'))
+    .pipe(gulp.dest('./'))
     .pipe(browserSync.stream())
 });
 
 gulp.task('js', function () {
   return gulp.src('src/js-modules/index.js')
     //.pipe(terser())
-    .pipe(gulp.dest('src/js'))
+    .pipe(gulp.dest('./'))
     .pipe(browserSync.reload({stream: true}));
 });
 
