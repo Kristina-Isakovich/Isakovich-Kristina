@@ -1,0 +1,61 @@
+.tabs__content {
+  overflow: hidden;
+}
+
+.task__list {
+  width: 75%;
+  background-color: $bcg;
+  border-radius: $radius;
+  padding: 2.0rem;
+  position: relative;
+  overflow-y: scroll;
+
+  &-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $bcg-light;
+    border-radius: $radius;
+    padding-left: 2.0rem;
+    z-index: 2;
+    margin-bottom: 2.0rem;
+
+    :last-child {
+      border-radius: $radius;
+    }
+
+    &__wrap {
+      :first-child {
+        font-size: 3.0rem;
+        color: $accent-dark;
+        padding-bottom: .4rem;
+      }
+
+      :last-child {
+        font-size: 2.0rem;
+        color: $accent-light;
+      }
+    }
+  }
+}
+
+.add-tasks-btn {
+  position: fixed;
+  bottom: 4.0rem;
+  right: 4.0rem;
+  font-size: 1.8rem;
+  color: $accent-dark;
+  background-color: $bcg-light;
+  border-radius: $radius;
+  border: .1rem solid $accent-dark;
+  padding: 1.8rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tab {
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+}

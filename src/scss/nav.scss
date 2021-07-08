@@ -1,0 +1,53 @@
+.tabs-nav {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(4.5rem, auto));
+  grid-row-gap: 1.5rem;
+  width: 25%;
+  background-color: $bcg;
+  border-radius: $radius;
+  margin-right: 2.0rem;
+  padding: 2.0rem 0;
+
+  &__title {
+    font-size: 3.5rem;
+    color: $accent-dark;
+    align-items: center;
+    text-align: center;
+    padding: 0 2.0rem;
+  }
+
+  &__item {
+    padding: 0 2.0rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $accent-light;
+    &:hover {
+      background-color: $bcg-light;
+      color: $accent-dark;
+      transition: .5s ease;
+    }
+
+    &-icon {
+      font-size: 1.5rem;
+      margin-right: 1.0rem;
+    }
+
+    &-title {
+      font-size: 1.5rem;
+    }
+
+    &.is-active {
+      background-color: $bcg-light;
+      border-right: 0.4rem solid $accent-dark;
+
+      .tabs-nav__item-title {
+        color: $accent-dark;
+      }
+
+      .tabs-nav__item-icon {
+        color: $accent-dark;
+      }
+    }
+  }
+}

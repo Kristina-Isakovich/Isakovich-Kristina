@@ -1,0 +1,38 @@
+.task {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr) 10rem repeat(3, auto);
+  font-size: 1.5rem;
+  color: $accent-light;
+  border-radius: $radius;
+  padding: 2.0rem;
+  background-color: $bcg-light;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.0rem;
+
+  &-name {
+    color: $accent-dark;
+  }
+
+  &__btn {
+    color: $accent-dark;
+    border-radius: $radius;
+    border: .1rem solid $accent-dark;
+    padding: .7rem;
+  }
+}
+
+.completed-tasks > .task,
+.deleted-tasks > .task {
+  grid-template-columns: repeat(2, 1fr) 10rem repeat(2, auto);
+}
+
+.current-task-description {
+  width: 40rem;
+}
+
+.current-task-priority {
+  width: 10rem;
+  font-style: italic;
+}

@@ -1,0 +1,14 @@
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: $bcg-dark;
+  transition: all .5s ease;
+  transform: scale(1.1);
+}

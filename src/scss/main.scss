@@ -1,6 +1,34 @@
-@import "vars";
+@import "mixins";
+
+// Иконочные шрифры //
+@import "icons";
+
+// Шрифт по умолчанию //
+$fontFamily: "Montserrat";
+$fontSize: 62.5%;
+
+// Переменные //
+$bcg: #f4f6fb;
+$bcg-light: #eaecf7;
+$bcg-dark: #d3d9f3;
+$accent-dark: #5863b4;
+$accent-light: #a2a2a2;
+
+$radius: 30px;
+
+// Обнуление, общие параметры //
 @import "base";
 
+:root {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+}
+
+body._lock {
+  overflow: hidden;
+}
+
+// Оболочка //
 .wrapper {
   width: 100%;
   height: 100vh;
@@ -8,249 +36,14 @@
   padding: 2.0rem;
 }
 
-/* Nav */
-.tabs-nav {
-  display: grid;
-  grid-template-rows: repeat(auto-fill, minmax(4.5rem, auto));
-  grid-row-gap: 1.5rem;
-  width: 25%;
-  background-color: var(--bcg);
-  border-radius: var(--radius);
-  margin-right: 2.0rem;
-  padding: 2.0rem 0;
-}
+// Шрифры //
+@import "fonts";
 
-.tabs-nav-title {
-  font-size: 3.5rem;
-  color: var(--accent-dark);
-  align-items: center;
-  text-align: center;
-  padding: 0 2.0rem;
-}
+// Общие стили //
+@import "ui";
 
-.tabs-nav__item {
-  padding: 0 2.0rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: var(--accent-light);
-}
-
-.tabs-nav__item:hover {
-  background-color: var(--bcg-light);
-  color: var(--accent-dark);
-  transition: .5s ease;
-}
-
-.tabs-nav__item-icon{
-  margin-right: 1.0rem;
-}
-
-.tabs-nav__item-title{
-  font-size: 1.5rem;
-}
-
-.tabs-nav__item.is-active {
-  background-color: var(--bcg-light);
-  border-right: 0.4rem solid var(--accent-dark);
-
-  .tabs-nav__item-title {
-    color: var(--accent-dark);
-  }
-}
-
-/* TodoList */
-.tabs__content {
-  overflow: hidden;
-}
-
-.task-list {
-  width: 75%;
-  background-color: var(--bcg);
-  border-radius: var(--radius);
-  padding: 2.0rem;
-  position: relative;
-  overflow-y: scroll;
-}
-
-.task-list-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--bcg-light);
-  border-radius: var(--radius);
-  padding-left: 2.0rem;
-  z-index: 2;
-  margin-bottom: 2.0rem;
-
-  :last-child{
-    border-radius: var(--radius);
-  }
-}
-
-.task-list-bar__wrap {
-  :first-child {
-    font-size: 3.0rem;
-    color: var(--accent-dark);
-    padding-bottom: .4rem;
-  }
-  :last-child {
-    font-size: 2.0rem;
-    color: var(--accent-light);
-  }
-}
-
-.add-tasks-btn {
-  position: fixed;
-  bottom: 4.0rem;
-  right: 4.0rem;
-  font-size: 1.8rem;
-  color: var(--accent-dark);
-  background-color: var(--bcg-light);
-  border-radius: var(--radius);
-  border: .1rem solid var(--accent-dark);
-  padding: 1.8rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.tab {
-  display: none;
-}
-
-.tab.is-active {
-  display: block;
-}
-
-/* li */
-.task {
-  display: grid;
-  grid-gap: 1.5rem;
-  grid-template-columns: repeat(6, 1fr);
-  font-size: 1.5rem;
-  color: var(--accent-light);
-  border-radius: var(--radius);
-  padding: 2.0rem;
-  background-color: var(--bcg-light);
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2.0rem;
-}
-
-.completed-tasks > .task,
-.deleted-tasks > .task {
-  grid-template-columns: repeat(5, 1fr);
-}
-
-.task-name {
-  min-width: 20rem;
-  color: var(--accent-dark);
-}
-
-.current-task-description {
-  width: 40rem;
-}
-
-.current-task-priority {
-  width: 10rem;
-  font-style: italic;
-}
-
-.task-btn {
-  color: var(--accent-dark);
-  border-radius: var(--radius);
-  border: .1rem solid var(--accent-dark);
-  padding: .7rem;
-}
-
-// Форма
-.add-task__form,
-.form-edit {
-  flex-direction: column;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--bcg-light);
-  border: 1px solid var(--accent-light);
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  border-radius: var(--radius);
-  padding: 2.0rem;
-  font-size: 1.7rem;
-  width: 50rem;
-
-  > input {
-    width: -webkit-fill-available;
-    margin-bottom: 1.0rem;
-    background-color: var(--bcg-light);
-    border-radius: var(--radius);
-    height: 3.0rem;
-    border: .2rem solid var(--accent-dark);
-    outline: none;
-    color: var(--accent-light);
-    padding: .5rem;
-  }
-
-  > textarea {
-    width: -webkit-fill-available;
-    margin-bottom: 1.0rem;
-    background-color: var(--bcg-light);
-    border-radius: var(--radius);
-    height: 5.0rem;
-    border: .2rem solid var(--accent-dark);
-    outline: none;
-    color: var(--accent-light);
-    padding: .5rem;
-  }
-}
-
-.form-title{
-  color: var(--accent-dark);
-  font-size: 2.3rem;
-  margin-bottom: 2.0rem;
-  text-align: center;
-}
-
-.form__star {
-  color: red;
-}
-
-.form__text {
-  display: block;
-  padding-left: 1.5rem;
-  color: var(--accent-light);
-}
-
-.form-priority-case,
-.form-edit-priority-case {
-  display: flex;
-  margin-bottom: 1.0rem;
-
-  :first-child {
-    margin-right: 2.0rem;
-  }
-}
-
-.form-priority__radio {
-  display: grid;
-  color: var(--accent-light);
-  grid-template-columns: repeat(2, auto);
-  grid-row-gap: 1.0rem;
-  align-items: center;
-}
-
-.form-buttons,
-.form-edit-buttons {
-  text-align: center;
-
-  :first-child {
-    margin-right: 1.0rem;
-  }
-}
-
-.form-btn {
-  color: var(--accent-dark);
-  border-radius: var(--radius);
-  border: .1rem solid var(--accent-dark);
-  padding: .7rem;
-  width: 20rem;
-}
+// Отдельные блоки //
+@import "nav";
+@import "task-container";
+@import "task";
+@import "form";

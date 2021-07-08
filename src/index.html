@@ -2,39 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>Todo List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main.min.css">
 </head>
 <body>
 <div class="wrapper">
   <aside class="tabs-nav">
-    <h1 class="tabs-nav-title">Меню задач</h1>
+    <h1 class="tabs-nav__title">Меню</h1>
     <div class="tabs-nav__item is-active" data-tab-name="tab-1">
-      <img class="tabs-nav__item-icon" src="./img/current-tasks-icon.svg" height="20" alt="tasks">
+      <span class="tabs-nav__item-icon _icon-tasks"></span>
       <span class="tabs-nav__item-title">Текущие задачи</span>
     </div>
 
     <div class="tabs-nav__item" data-tab-name="tab-2">
-      <img class="tabs-nav__item-icon" src="./img/check-box-icon.svg" height="20" alt="check-box">
+      <span class="tabs-nav__item-icon _icon-clipboard"></span>
       <span class="tabs-nav__item-title">Выполненные задачи</span>
     </div>
 
     <div class="tabs-nav__item" data-tab-name="tab-3">
-      <img class="tabs-nav__item-icon" src="./img/trash-can-icon.svg" height="20" alt="trash-can">
+      <span class="tabs-nav__item-icon _icon-trash"></span>
       <span class="tabs-nav__item-title">Удаленные задачи</span>
     </div>
   </aside>
 
-  <section class="task-list">
-    <header class="task-list-bar">
-      <div class="task-list-bar__wrap">
-        <h1 class="task-list-bar-title">Привет!</h1>
-        <p class="task-list-bar-text">Хорошего трудового Дня!</p>
+  <section class="task__list">
+    <header class="task__list-bar">
+      <div class="task__list-bar__wrap">
+        <h1 class="task__list-bar-title">Привет!</h1>
+        <p class="task__list-bar-text">Хорошего трудового Дня!</p>
       </div>
 
-      <img class="task-list-bar__img" src="./img/men.jpg" height="150" alt="men">
+      <img class="task__list-bar__img" src="./img/men.jpg" height="150" alt="men">
     </header>
 
     <div class="tabs__content">
@@ -64,14 +63,14 @@
 </template>
 
 <template id="template-btn">
-  <button class="task-btn btn__edit">Редактировать</button>
-  <button class="task-btn btn__do">Выполнить</button>
-  <button class="task-btn btn__delete">Удалить</button>
-  <button class="task-btn btn__reestablish">Восстановить</button>
+  <button class="task__btn btn__edit">Редактировать</button>
+  <button class="task__btn btn__do">Выполнить</button>
+  <button class="task__btn btn__delete">Удалить</button>
+  <button class="task__btn btn__reestablish">Восстановить</button>
 </template>
 
 <form class="form-edit" hidden="hidden">
-  <h1 class="form-title">Редактирование задачи!</h1>
+  <h1 class="form__title">Редактирование задачи!</h1>
   <label class="form__text" for="form-edit-name">Название <span class="form__star">*</span></label>
   <input type="text" id="form-edit-name" required>
 
@@ -98,7 +97,7 @@
 </form>
 
 <form class="add-task__form" hidden="hidden">
-  <h1 class="form-title">Добавим новую задачу!</h1>
+  <h1 class="form__title">Добавим новую задачу!</h1>
   <label class="form__text" for="form-name">Название <span class="form__star">*</span></label>
   <input type="text" id="form-name" required>
 
@@ -124,6 +123,6 @@
   </div>
 </form>
 
-<script type="module" src="js/index.js"></script>
+<script type="module" src="js/index.min.js"></script>
 </body>
 </html>
